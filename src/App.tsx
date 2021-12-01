@@ -1,18 +1,9 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route
-} from "react-router-dom";
-import Home from './views/Home';
+import Router from "./Router";
+import { Provider } from "react-redux";
+import store from "./state/store";
 
 function App() {
-  return (
-    <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Home />} />
-    </Routes>
-  </BrowserRouter>
-  );
+	return <Router />;
 }
 
 export default App;
