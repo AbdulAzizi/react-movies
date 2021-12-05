@@ -1,4 +1,3 @@
-import { Movie } from "./movie.interface";
 import { StoreAction } from "./movie.actions";
 import { ActionType } from "./movie.action.types";
 
