@@ -3,20 +3,16 @@
 ### `API key`
 
 This project is using The Movie DB API
-To get an api key follow the instructions from the following link:
-
-https://developers.themoviedb.org/3/getting-started/introduction
-
-or
-
+To get an api key follow the instructions from the following link:\
+https://developers.themoviedb.org/3/getting-started/introduction\
+or\
 use my API key: `94bc488b4b35d80b4ccf287660919df4`
 
 ### `.env.local`
 
-To use api key we have to store it in `.env.local` file
-Create `.env.local` file in root folder
-Paste API key like so
-
+To use api key we have to store it in `.env.local` file\
+Create `.env.local` file in root folder\
+Paste API key like so\
 `REACT_APP_API_KEY = 94bc488b4b35d80b4ccf287660919df4`
 
 ### `npm install`
