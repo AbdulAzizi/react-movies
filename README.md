@@ -13,7 +13,7 @@ use my API key: `94bc488b4b35d80b4ccf287660919df4`
 To use api key we have to store it in `.env.local` file\
 Create `.env.local` file in root folder\
 Paste API key like so\
-`REACT_APP_API_KEY = 94bc488b4b35d80b4ccf287660919df4`
+`REACT_APP_API_KEY = your api key`
 
 ### `npm install`
 
