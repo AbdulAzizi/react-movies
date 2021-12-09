@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { storeMovies } from "../state/modules/movie/movie.action.creators";
 import { State } from "../state/reducer";
+import { Card } from "../stories/card/Card";
 
 const Home = () => {
 	const movies = useSelector((state: State) => state.movies);
@@ -41,11 +42,13 @@ const Home = () => {
 					return (
 						<div style={{ flex: "0 0 33.333333%" }}>
 							<div style={{ padding: "20px" }}>
-								<img
-									style={{ width: "100%" }}
-									src={"https://www.themoviedb.org/t/p/w440_and_h660_face/" + m.poster_path}
-									alt=""
-								/>
+								<Card flat tile padding={0}>
+									<img
+										style={{ display: "block", width: "100%" }}
+										src={"https://www.themoviedb.org/t/p/w440_and_h660_face/" + m.poster_path}
+										alt=""
+									/>
+								</Card>
 								<div style={{ padding: "20px 0px" }}>
 									<div style={{ display: "flex", justifyContent: "space-between" }}>
 										<span style={{ color: "#bdbdbd" }}>{m.title}</span>
