@@ -1,0 +1,16 @@
+.card {
+	border-radius: 5px;
+	overflow: hidden;
+}
+.card.tile {
+	border-radius: 0px;
+}
+.card.shadow {
+	box-shadow: rgb(0 0 0 / 50%) 0px 0px 10px;
+}
+.card.outline {
+	box-shadow: rgb(0 0 0 / 20%) 0px 0px 0px 1px;
+}
+.card.padding {
+	padding: 10px;
+}
