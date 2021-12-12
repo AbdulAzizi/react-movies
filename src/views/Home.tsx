@@ -5,6 +5,13 @@ import { bindActionCreators } from "redux";
 import { storeMovies } from "../state/modules/movie/movie.action.creators";
 import { State } from "../state/reducer";
 import { Card } from "../stories/card/Card";
+import { ListItemPrimaryText } from "../stories/list/listItemPrimaryText/ListItemPrimaryText";
+import { ListItemSecondaryText } from "../stories/list/listItemSecondaryText/ListItemSecondaryText";
+import { ListItem } from "../stories/list/listItem/ListItem";
+import { ListItemContent } from "../stories/list/listItemContent/ListItemContent";
+import { ListItemAction } from "../stories/list/listItemAction/ListItemAction";
+import { Chip } from "../stories/chip/Chip";
+import { Image } from "../stories/image/Image";
 
 const Home = () => {
 	const movies = useSelector((state: State) => state.movies);
@@ -43,31 +50,22 @@ const Home = () => {
 						<div style={{ flex: "0 0 33.333333%" }}>
 							<div style={{ padding: "20px" }}>
 								<Card flat tile padding={0}>
-									<img
-										style={{ display: "block", width: "100%" }}
+									<Image
+										contain={false}
 										src={"https://www.themoviedb.org/t/p/w440_and_h660_face/" + m.poster_path}
-										alt=""
 									/>
 								</Card>
-								<div style={{ padding: "20px 0px" }}>
-									<div style={{ display: "flex", justifyContent: "space-between" }}>
-										<span style={{ color: "#bdbdbd" }}>{m.title}</span>
-										<span
-											style={{
-												color: "#bdbdbd",
-												border: "1px #555 solid",
-												borderRadius: "5px",
-												padding: "4px 15px",
-												fontSize: "13px",
-											}}
-										>
-											{new Date(m.release_date).getFullYear()}
-										</span>
-									</div>
-									<span style={{ color: "#818181", fontSize: "14px" }}>
-										{m.genres.length && m.genres[0].name}
-									</span>
-								</div>
+								<ListItem>
+									<ListItemContent>
+										<ListItemPrimaryText>{m.title}</ListItemPrimaryText>
+										<ListItemSecondaryText>
+											{m.genres.length && m.genres[0].name}
+										</ListItemSecondaryText>
+									</ListItemContent>
+									<ListItemAction>
+										<Chip>{new Date(m.release_date).getFullYear()}</Chip>
+									</ListItemAction>
+								</ListItem>
 							</div>
 						</div>
 					);
