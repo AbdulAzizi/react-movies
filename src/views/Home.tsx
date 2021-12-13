@@ -12,6 +12,7 @@ import { ListItemContent } from "../stories/list/listItemContent/ListItemContent
 import { ListItemAction } from "../stories/list/listItemAction/ListItemAction";
 import { Chip } from "../stories/chip/Chip";
 import { Image } from "../stories/image/Image";
+import { TextField } from "../stories/textField/TextField";
 
 const Home = () => {
 	const movies = useSelector((state: State) => state.movies);
@@ -43,35 +44,94 @@ const Home = () => {
 		});
 	}, []);
 	return (
-		<div style={{ maxWidth: "1200px", margin: "auto" }}>
-			<div style={{ display: "flex", flexWrap: "wrap" }}>
-				{movies.map((m) => {
-					return (
-						<div style={{ flex: "0 0 33.333333%" }}>
-							<div style={{ padding: "20px" }}>
-								<Card flat tile padding={0}>
-									<Image
-										contain={false}
-										src={"https://www.themoviedb.org/t/p/w440_and_h660_face/" + m.poster_path}
-									/>
-								</Card>
-								<ListItem>
-									<ListItemContent>
-										<ListItemPrimaryText>{m.title}</ListItemPrimaryText>
-										<ListItemSecondaryText>
-											{m.genres.length && m.genres[0].name}
-										</ListItemSecondaryText>
-									</ListItemContent>
-									<ListItemAction>
-										<Chip>{new Date(m.release_date).getFullYear()}</Chip>
-									</ListItemAction>
-								</ListItem>
+		<>
+			<div style={{ overflow: "hidden", position: "relative" }}>
+				<div
+					style={{
+						backgroundImage:
+							"url(https://s.studiobinder.com/wp-content/uploads/2019/12/The-Best-Order-to-Watch-Marvel-Movies-Featured-StudioBinder.jpg.webp)",
+
+						filter: "blur(4px)",
+						WebkitFilter: "blur(4px)",
+						height: "100%",
+						backgroundRepeat: "no-repeat",
+						backgroundSize: "cover",
+						position: "absolute",
+						top: 0,
+						bottom: 0,
+						left: 0,
+						right: 0,
+					}}
+				></div>
+				<div
+					style={{
+						backgroundColor: "rgb(0 0 0 / 55%)",
+						position: "relative",
+					}}
+				>
+					<div style={{ maxWidth: "1000px", margin: "auto", padding: "100px 20px" }}>
+						<h1
+							style={{
+								fontWeight: 300,
+								color: "#fff",
+								textTransform: "uppercase",
+								paddingBottom: "40px",
+							}}
+						>
+							Find your movie
+						</h1>
+						<div style={{ display: "flex", flexWrap: "wrap" }}>
+							<div style={{ flex: "0 0 75%", paddingRight: "15px", boxSizing: "border-box" }}>
+								<TextField transparent outline={false} name="search" label="Search" />
 							</div>
+							<button
+								style={{
+									flex: "0 0 25%",
+									backgroundColor: "#f65262",
+									textTransform: "uppercase",
+									fontSize: "20px",
+									color: "white",
+									borderRadius: "5px",
+									border: "none",
+									fontWeight: 300,
+								}}
+							>
+								Search
+							</button>
 						</div>
-					);
-				})}
+					</div>
+				</div>
 			</div>
-		</div>
+			<div style={{ maxWidth: "1200px", margin: "auto" }}>
+				<div style={{ display: "flex", flexWrap: "wrap" }}>
+					{movies.map((m) => {
+						return (
+							<div style={{ flex: "0 0 33.333333%" }}>
+								<div style={{ padding: "20px" }}>
+									<Card flat tile padding={0}>
+										<Image
+											contain={false}
+											src={"https://www.themoviedb.org/t/p/w440_and_h660_face/" + m.poster_path}
+										/>
+									</Card>
+									<ListItem>
+										<ListItemContent>
+											<ListItemPrimaryText>{m.title}</ListItemPrimaryText>
+											<ListItemSecondaryText>
+												{m.genres.length && m.genres[0].name}
+											</ListItemSecondaryText>
+										</ListItemContent>
+										<ListItemAction>
+											<Chip>{new Date(m.release_date).getFullYear()}</Chip>
+										</ListItemAction>
+									</ListItem>
+								</div>
+							</div>
+						);
+					})}
+				</div>
+			</div>
+		</>
 	);
 };
 
