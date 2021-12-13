@@ -1,0 +1,48 @@
+/* light */
+.text-field {
+	background-color: white;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	height: 50px;
+	width: 100%;
+	padding: 20px;
+	font-size: 20px;
+	font-weight: 300;
+	box-sizing: border-box;
+}
+.text-field.outline {
+	border-color: rgb(190, 190, 190);
+}
+.text-field.transparent {
+	background-color: rgb(255 255 255 / 0.2);
+	color: white;
+}
+.transparent.text-field::placeholder {
+	color: rgb(255 255 255 / 0.5);
+}
+
+.text-field:focus-visible {
+	border: 1px solid #5090d3;
+	outline: none;
+}
+/* dark */
+.dark .text-field,
+.dark.text-field {
+	background-color: rgb(40, 40, 40);
+	border: 1px solid transparent;
+	color: white;
+}
+.dark.text-field::placeholder,
+.dark .text-field::placeholder {
+	color: rgb(255 255 255 / 0.5);
+}
+.dark .text-field.outline,
+.dark.text-field.outline {
+	border-color: rgb(255, 255, 255);
+}
+
+.dark .text-field:focus-visible,
+.dark.text-field:focus-visible {
+	border: 1px solid #5090d3;
+	outline: none;
+}
