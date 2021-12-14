@@ -13,6 +13,7 @@ import { ListItemAction } from "../stories/list/listItemAction/ListItemAction";
 import { Chip } from "../stories/chip/Chip";
 import { Image } from "../stories/image/Image";
 import { TextField } from "../stories/textField/TextField";
+import { Button } from "../stories/button/Button";
 
 const Home = () => {
 	const movies = useSelector((state: State) => state.movies);
@@ -84,20 +85,13 @@ const Home = () => {
 							<div style={{ flex: "0 0 75%", paddingRight: "15px", boxSizing: "border-box" }}>
 								<TextField transparent outline={false} name="search" label="Search" />
 							</div>
-							<button
+							<Button
 								style={{
 									flex: "0 0 25%",
-									backgroundColor: "#f65262",
-									textTransform: "uppercase",
-									fontSize: "20px",
-									color: "white",
-									borderRadius: "5px",
-									border: "none",
-									fontWeight: 300,
 								}}
-							>
-								Search
-							</button>
+								label="Search"
+								color="#f65262"
+							/>
 						</div>
 					</div>
 				</div>
