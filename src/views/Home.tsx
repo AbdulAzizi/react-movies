@@ -66,7 +66,7 @@ const Home = () => {
 				></div>
 				<div
 					style={{
-						backgroundColor: "rgb(0 0 0 / 55%)",
+						backgroundColor: "rgb(0 0 0 / 70%)",
 						position: "relative",
 					}}
 				>
@@ -100,7 +100,7 @@ const Home = () => {
 				<div style={{ display: "flex", flexWrap: "wrap" }}>
 					{movies.map((m) => {
 						return (
-							<div style={{ flex: "0 0 33.333333%" }}>
+							<div key={m.id} style={{ flex: "0 0 33.333333%" }}>
 								<div style={{ padding: "20px" }}>
 									<Card flat tile padding={0}>
 										<Image
