@@ -22,6 +22,11 @@ const Home = () => {
 	const popularMoviesUrl = "https://api.themoviedb.org/3/movie/popular";
 	const genreUrl = "https://api.themoviedb.org/3/genre/movie/list";
 	const [search, setSearch] = useState("");
+	const [filteredMovies, setFilteredMovies] = useState<Movie[]>([]);
+
+	const applySearch = () => {
+		setFilteredMovies(movies.filter((m, i) => m.title.includes(search)));
+	};
 
 	useEffect(() => {
 		// request movies
@@ -42,6 +47,7 @@ const Home = () => {
 				});
 				// update state
 				storeMoviesActionCreator(tempMovies);
+				setFilteredMovies(tempMovies);
 			});
 		});
 	}, []);
@@ -99,6 +105,7 @@ const Home = () => {
 								}}
 								label="Search"
 								color="#f65262"
+								onClick={applySearch}
 							/>
 						</div>
 					</div>
@@ -106,7 +113,7 @@ const Home = () => {
 			</div>
 			<div style={{ maxWidth: "1200px", margin: "auto" }}>
 				<div style={{ display: "flex", flexWrap: "wrap" }}>
-					{movies.map((m) => {
+					{filteredMovies.map((m) => {
 						return (
 							<div key={m.id} style={{ flex: "0 0 33.333333%" }}>
 								<div style={{ padding: "20px" }}>
