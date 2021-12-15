@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
+import React from "react";
 import "./button.css";
 
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLElement> {
 	color?: string;
 	label: string;
 	children?: ReactNode;
-	style?: Object;
 }
 
 export const Button = ({ color = "blue", ...props }: ButtonProps) => (
