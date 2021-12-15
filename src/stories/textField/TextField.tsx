@@ -1,7 +1,7 @@
+import React from "react";
 import "./textField.css";
 
-interface TextFieldProps {
-	name: string;
+interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	label?: string;
 	dark?: boolean;
 	outline?: boolean;
@@ -13,8 +13,8 @@ export const TextField = ({ dark = false, transparent = false, outline = true, .
 		<input
 			placeholder={props.label ? props.label : ""}
 			className={["text-field", dark && "dark", outline && "outline", transparent && "transparent"].join(" ")}
-			name={props.name}
 			type="text"
+			{...props}
 		/>
 	);
 };

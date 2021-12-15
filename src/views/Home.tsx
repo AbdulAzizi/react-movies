@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { storeMovies } from "../state/modules/movie/movie.action.creators";
@@ -21,6 +21,7 @@ const Home = () => {
 	const storeMoviesActionCreator = bindActionCreators(storeMovies, dispatch);
 	const popularMoviesUrl = "https://api.themoviedb.org/3/movie/popular";
 	const genreUrl = "https://api.themoviedb.org/3/genre/movie/list";
+	const [search, setSearch] = useState("");
 
 	useEffect(() => {
 		// request movies
@@ -83,7 +84,14 @@ const Home = () => {
 						</h1>
 						<div style={{ display: "flex", flexWrap: "wrap" }}>
 							<div style={{ flex: "0 0 75%", paddingRight: "15px", boxSizing: "border-box" }}>
-								<TextField transparent outline={false} name="search" label="Search" />
+								<TextField
+									value={search}
+									transparent
+									outline={false}
+									name="search"
+									label="Search"
+									onInput={(e) => setSearch((e.target as HTMLInputElement).value)}
+								/>
 							</div>
 							<Button
 								style={{
