@@ -14,6 +14,8 @@ import { Chip } from "../stories/chip/Chip";
 import { Image } from "../stories/image/Image";
 import { TextField } from "../stories/textField/TextField";
 import { Button } from "../stories/button/Button";
+import { ToggleButtonGroup } from "../stories/toggleButtonGroup/ToggleButtonGroup";
+import { ToggleButton } from "../stories/toggleButton/ToggleButton";
 
 const Home = () => {
 	const movies = useSelector((state: State) => state.movies);
@@ -23,10 +25,17 @@ const Home = () => {
 	const genreUrl = "https://api.themoviedb.org/3/genre/movie/list";
 	const [search, setSearch] = useState("");
 	const [filteredMovies, setFilteredMovies] = useState<Movie[]>([]);
+	const [sortBy, setSortBy] = useState("realease_date");
+	const handleSortClick = (e: any) => {
+		setSortBy(e.target.value);
+	};
 
 	const applySearch = () => {
 		setFilteredMovies(movies.filter((m, i) => m.title.includes(search)));
 	};
+	// useEffect(() => {
+	// 	// implement sort here
+	// }, [sortBy]);
 
 	useEffect(() => {
 		// request movies
@@ -103,11 +112,38 @@ const Home = () => {
 								style={{
 									flex: "0 0 25%",
 								}}
-								label="Search"
 								color="#f65262"
 								onClick={applySearch}
-							/>
+							>
+								Search
+							</Button>
 						</div>
+					</div>
+				</div>
+			</div>
+			<div style={{ backgroundColor: "#555" }}>
+				<div
+					style={{
+						maxWidth: "1000px",
+						margin: "auto",
+						padding: "10px 20px",
+						color: "white",
+						display: "flex",
+						justifyContent: "space-between",
+						flexFlow: "row wrap",
+					}}
+				>
+					<span style={{ margin: "auto 0", fontWeight: 900 }}>{filteredMovies.length} movies found</span>
+					<div style={{ display: "flex", alignContent: "center" }}>
+						<div style={{ margin: "auto", marginRight: "15px", fontWeight: 300 }}> SORT BY</div>
+						<ToggleButtonGroup value={sortBy} onChange={handleSortClick} size="small" color="#f65262">
+							<ToggleButton value="realease_date" className={sortBy === "realease_date" ? "active" : ""}>
+								Realease date
+							</ToggleButton>
+							<ToggleButton value="rating" className={sortBy === "rating" ? "active" : ""}>
+								Rating
+							</ToggleButton>
+						</ToggleButtonGroup>
 					</div>
 				</div>
 			</div>
