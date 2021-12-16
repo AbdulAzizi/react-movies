@@ -7,7 +7,22 @@ export default {
 	args: {},
 } as ComponentMeta<typeof Button>;
 
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
+const Template: ComponentStory<typeof Button> = (args) => <Button {...args}>Button</Button>;
 
 export const Default = Template.bind({});
-Default.args = { label: "Button" };
+Default.args = {};
+
+// const OneItem: ComponentStory<typeof List> = (args) =>(
+export const Size: ComponentStory<typeof Button> = (args) => (
+	<>
+		<Button {...args} size="small">
+			Button
+		</Button>
+		<Button {...args} size="medium">
+			Button
+		</Button>
+		<Button {...args} size="large">
+			Button
+		</Button>
+	</>
+);
