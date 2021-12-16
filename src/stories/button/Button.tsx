@@ -11,7 +11,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLElement> {
 export const Button = ({ size = "medium", color = "#0089ff", ...props }: ButtonProps) => (
 	<button
 		{...props}
-		style={{ backgroundColor: color, ...props.style }}
+		style={{ backgroundColor: color || "#0089ff", ...props.style }}
 		className={["button", size, props.className].join(" ")}
 	>
 		{props.children}
