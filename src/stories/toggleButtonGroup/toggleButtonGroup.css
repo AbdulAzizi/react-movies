@@ -1,0 +1,16 @@
+.button-group-wrapper .button + .button {
+	margin: 0;
+}
+.button-group-wrapper .button {
+	border-radius: 0;
+}
+.button-group-wrapper .button:first-child {
+	border-radius: 5px 0 0 5px;
+}
+.button-group-wrapper .button:last-child {
+	border-radius: 0 5px 5px 0;
+}
+.button-group-wrapper .active {
+	/* filter: brightness(0.8); */
+	background-color: rgb(0, 0, 0, 0.2) !important;
+}
