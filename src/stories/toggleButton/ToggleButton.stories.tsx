@@ -5,7 +5,7 @@ export default { title: "API/ToggleButton", component: ToggleButton, argTypes: {
 	typeof ToggleButton
 >;
 
-const Template: ComponentStory<typeof ToggleButton> = (args) => <ToggleButton {...args} />;
+const Template: ComponentStory<typeof ToggleButton> = (args) => <ToggleButton {...args}>Button</ToggleButton>;
 
 export const Default = Template.bind({});
 Default.args = {};
