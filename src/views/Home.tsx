@@ -11,7 +11,9 @@ import SortByPanel from "../components/SortByPanel";
 
 const Home = () => {
 	const movies = useSelector((state: State) => state.movies);
-	const searchString = useSelector((state: State) => state.searchString);
+	const searchString = useSelector((state: State) => state.filters.searchString);
+	const sortBy = useSelector((state: State) => state.filters.sortBy);
+
 	const popularMoviesUrl = "https://api.themoviedb.org/3/movie/popular";
 	const storeMoviesActionCreator = bindActionCreators(storeMovies, useDispatch());
 	const genreUrl = "https://api.themoviedb.org/3/genre/movie/list";
@@ -42,7 +44,10 @@ const Home = () => {
 	return (
 		<>
 			<SearchBanner />
-			<SortByPanel foundMoviesNumber={movies.filter((m: Movie) => m.title.includes(searchString)).length} />
+			<SortByPanel
+				foundMoviesNumber={movies.filter((m: Movie) => m.title.includes(searchString)).length}
+				sortBy={sortBy}
+			/>
 			<MoviesGrid movies={movies.filter((m: Movie) => m.title.includes(searchString))} />
 		</>
 	);

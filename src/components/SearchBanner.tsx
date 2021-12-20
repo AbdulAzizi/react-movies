@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "../stories/button/Button";
 import { TextField } from "../stories/textField/TextField";
 import { bindActionCreators } from "redux";
-import { setSearchString } from "../state/modules/searchString/searchStringActionCreator";
+import { setSearchString } from "../state/modules/filters/filtersActionCreator";
 import { useDispatch } from "react-redux";
 
 const SearchBanner = () => {

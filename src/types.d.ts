@@ -10,3 +10,7 @@ interface Movie {
 	genre_ids: number[];
 	release_date: string;
 }
+interface Filters {
+	searchString: string;
+	sortBy: "release_date" | "rating";
+}
