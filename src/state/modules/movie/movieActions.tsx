@@ -1,4 +1,4 @@
-import { ActionType } from "./movie.action.types";
+import { ActionType } from "./movieActionTypes";
 
 // store action interface
 export interface StoreAction {

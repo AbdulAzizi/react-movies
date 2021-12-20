@@ -1,5 +1,5 @@
-import { StoreAction } from "./movie.actions";
-import { ActionType } from "./movie.action.types";
+import { StoreAction } from "./movieActions";
+import { ActionType } from "./movieActionTypes";
 
 // declare initial state array type of Movie
 const initialState: Movie[] = [];
