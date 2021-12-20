@@ -48,7 +48,17 @@ const Home = () => {
 				foundMoviesNumber={movies.filter((m: Movie) => m.title.includes(searchString)).length}
 				sortBy={sortBy}
 			/>
-			<MoviesGrid movies={movies.filter((m: Movie) => m.title.includes(searchString))} />
+			<MoviesGrid
+				movies={movies
+					.filter((m: Movie) => m.title.includes(searchString))
+					.sort((a: Movie, b: Movie) => {
+						if (sortBy === "release_date") {
+							return new Date(b.release_date).valueOf() - new Date(a.release_date).valueOf();
+						} else {
+							return b.vote_average - a.vote_average;
+						}
+					})}
+			/>
 		</>
 	);
 };

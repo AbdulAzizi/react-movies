@@ -8,7 +8,8 @@ interface Movie {
 	poster_path: string;
 	genres: Genre[];
 	genre_ids: number[];
-	release_date: string;
+	release_date: Date;
+	vote_average: number;
 }
 interface Filters {
 	searchString: string;
