@@ -7,6 +7,7 @@ interface ToggleButtonGroupProps {
 	size?: "small" | "medium" | "large";
 	color?: string;
 	children: ReactNode;
+	style?: object;
 }
 
 export const ToggleButtonGroup = ({ ...props }: ToggleButtonGroupProps) => {
@@ -20,5 +21,9 @@ export const ToggleButtonGroup = ({ ...props }: ToggleButtonGroupProps) => {
 		}
 		return child;
 	});
-	return <div className={"button-group-wrapper"}>{childrenWithProps}</div>;
+	return (
+		<div style={props.style} className={"button-group-wrapper"}>
+			{childrenWithProps}
+		</div>
+	);
 };

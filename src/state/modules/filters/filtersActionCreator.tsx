@@ -18,3 +18,11 @@ export const setSortBy = (str: "release_date" | "rating") => {
 		});
 	};
 };
+export const setSearchBy = (str: "title" | "genres") => {
+	return (dispatch: Dispatch<Action>) => {
+		dispatch({
+			type: ActionType.SET_SEARCH_BY,
+			payload: str,
+		});
+	};
+};

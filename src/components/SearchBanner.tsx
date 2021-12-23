@@ -2,12 +2,23 @@ import { useState } from "react";
 import { Button } from "../stories/button/Button";
 import { TextField } from "../stories/textField/TextField";
 import { bindActionCreators } from "redux";
-import { setSearchString } from "../state/modules/filters/filtersActionCreator";
-import { useDispatch } from "react-redux";
+import { setSearchString, setSearchBy } from "../state/modules/filters/filtersActionCreator";
+import { useDispatch, useSelector } from "react-redux";
+import { ToggleButtonGroup } from "../stories/toggleButtonGroup/ToggleButtonGroup";
+import { ToggleButton } from "../stories/toggleButton/ToggleButton";
 
-const SearchBanner = () => {
+interface SearchBannerProps {
+	searchBy: string;
+}
+
+const SearchBanner = (props: SearchBannerProps) => {
 	const [searchValue, setSearchValue] = useState("");
 	const setSearchStringActionCreator = bindActionCreators(setSearchString, useDispatch());
+	const setsetSearchByActionCreator = bindActionCreators(setSearchBy, useDispatch());
+
+	const handleSearchBy = (e: any) => {
+		setsetSearchByActionCreator(e.target.value);
+	};
 	return (
 		<div style={{ overflow: "hidden", position: "relative" }}>
 			<div
@@ -64,6 +75,21 @@ const SearchBanner = () => {
 							Search
 						</Button>
 					</div>
+
+					<ToggleButtonGroup
+						style={{ paddingTop: "20px" }}
+						value={props.searchBy}
+						onChange={handleSearchBy}
+						size="small"
+						color="#f65262"
+					>
+						<ToggleButton value="title" className={props.searchBy === "title" ? "active" : ""}>
+							Title
+						</ToggleButton>
+						<ToggleButton value="genres" className={props.searchBy === "genres" ? "active" : ""}>
+							Genre
+						</ToggleButton>
+					</ToggleButtonGroup>
 				</div>
 			</div>
 		</div>

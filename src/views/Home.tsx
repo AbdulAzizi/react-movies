@@ -13,6 +13,7 @@ const Home = () => {
 	const movies = useSelector((state: State) => state.movies);
 	const searchString = useSelector((state: State) => state.filters.searchString);
 	const sortBy = useSelector((state: State) => state.filters.sortBy);
+	const searchBy = useSelector((state: State) => state.filters.searchBy);
 
 	const popularMoviesUrl = "https://api.themoviedb.org/3/movie/popular";
 	const storeMoviesActionCreator = bindActionCreators(storeMovies, useDispatch());
@@ -41,24 +42,28 @@ const Home = () => {
 		});
 	}, []);
 
+	const filteredMovies = () => {
+		return movies.filter((m: Movie) => {
+			if (searchBy === "title") return m.title.includes(searchString);
+			else if (searchBy === "genres") return m.genres.filter((g) => g.name.includes(searchString)).length;
+		});
+	};
+
+	const sort = (movies: Movie[]) => {
+		return movies.sort((a: Movie, b: Movie) => {
+			if (sortBy === "release_date") {
+				return new Date(b.release_date).valueOf() - new Date(a.release_date).valueOf();
+			} else {
+				return b.vote_average - a.vote_average;
+			}
+		});
+	};
+
 	return (
 		<>
-			<SearchBanner />
-			<SortByPanel
-				foundMoviesNumber={movies.filter((m: Movie) => m.title.includes(searchString)).length}
-				sortBy={sortBy}
-			/>
-			<MoviesGrid
-				movies={movies
-					.filter((m: Movie) => m.title.includes(searchString))
-					.sort((a: Movie, b: Movie) => {
-						if (sortBy === "release_date") {
-							return new Date(b.release_date).valueOf() - new Date(a.release_date).valueOf();
-						} else {
-							return b.vote_average - a.vote_average;
-						}
-					})}
-			/>
+			<SearchBanner searchBy={searchBy} />
+			<SortByPanel foundMoviesNumber={filteredMovies().length} sortBy={sortBy} />
+			<MoviesGrid movies={sort(filteredMovies())} />
 		</>
 	);
 };

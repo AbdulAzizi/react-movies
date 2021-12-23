@@ -14,4 +14,5 @@ interface Movie {
 interface Filters {
 	searchString: string;
 	sortBy: "release_date" | "rating";
+	searchBy: "title" | "genres";
 }
