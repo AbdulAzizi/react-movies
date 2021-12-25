@@ -8,6 +8,8 @@ import { State } from "../state/reducer";
 import MoviesGrid from "../components/MoviesGrid";
 import SearchBanner from "../components/SearchBanner";
 import SortByPanel from "../components/SortByPanel";
+import { getPopularMovies } from "../api/movie";
+import { getAllGenres } from "../api/genre";
 
 const Home = () => {
 	const movies = useSelector((state: State) => state.movies);
@@ -15,32 +17,27 @@ const Home = () => {
 	const sortBy = useSelector((state: State) => state.filters.sortBy);
 	const searchBy = useSelector((state: State) => state.filters.searchBy);
 
-	const popularMoviesUrl = "https://api.themoviedb.org/3/movie/popular";
 	const storeMoviesActionCreator = bindActionCreators(storeMovies, useDispatch());
-	const genreUrl = "https://api.themoviedb.org/3/genre/movie/list";
 
 	useEffect(() => {
-		// request movies
-		axios.get(popularMoviesUrl, { params: { api_key: process.env.REACT_APP_API_KEY } }).then((resp) => {
-			// get movies
-			let tempMovies = resp.data.results;
-			// request genres
-			axios.get(genreUrl, { params: { api_key: process.env.REACT_APP_API_KEY } }).then((resp) => {
-				// get genres
-				let genres = resp.data.genres;
-				// for each movie
-				tempMovies = tempMovies.map((m: Movie) => {
-					// find movie's genre and assign to genres property
-					m.genres = genres.filter((g: Genre) => {
-						return m.genre_ids.includes(g.id);
-					});
-					return m;
-				});
-				// update state
-				storeMoviesActionCreator(tempMovies);
-			});
-		});
+		initializeMoviesWithGenres();
 	}, []);
+
+	const initializeMoviesWithGenres = async () => {
+		const popularMovies = await getPopularMovies();
+		const allGenres = await getAllGenres();
+		const moviesWithGenres = populateMoviesWithGenres(popularMovies.data.results, allGenres.data.genres);
+		storeMoviesActionCreator(moviesWithGenres);
+	};
+
+	const populateMoviesWithGenres = (movies: Movie[], genres: Genre[]) => {
+		return movies.map((movie: Movie) => {
+			movie.genres = genres.filter((genre: Genre) => {
+				return movie.genre_ids.includes(genre.id);
+			});
+			return movie;
+		});
+	};
 
 	const filteredMovies = () => {
 		return movies.filter((m: Movie) => {
