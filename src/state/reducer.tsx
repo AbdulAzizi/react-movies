@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import movieReducer from "./modules/movie/movieReducer";
+import moviesReducer from "./modules/movies/moviesReducer";
 import filtersReducer from "./modules/filters/filtersReducer";
 
-const reducers = combineReducers({ movies: movieReducer, filters: filtersReducer });
+const reducers = combineReducers({ movies: moviesReducer, filters: filtersReducer });
 
 export default reducers;
 export type State = ReturnType<typeof reducers>;

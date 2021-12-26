@@ -1,8 +1,7 @@
-import axios from "axios";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
-import { storeMovies } from "../state/modules/movie/movieActionCreators";
+import { storeMovies } from "../state/modules/movies/moviesActionCreators";
 import { State } from "../state/reducer";
 
 import MoviesGrid from "../components/MoviesGrid";
@@ -42,7 +41,7 @@ const Home = () => {
 	const filteredMovies = () => {
 		return movies.filter((m: Movie) => {
 			if (searchBy === "title") return m.title.includes(searchString);
-			else if (searchBy === "genres") return m.genres.filter((g) => g.name.includes(searchString)).length;
+			else if (searchBy === "genres") return m.genres.some((g) => g.name.includes(searchString));
 		});
 	};
 
