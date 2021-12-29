@@ -9,8 +9,10 @@ import SearchBanner from "../components/SearchBanner";
 import SortByPanel from "../components/SortByPanel";
 import { getPopularMovies } from "../api/movie";
 import { getAllGenres } from "../api/genre";
+import { MovieInfo } from "../components/MovieInfo";
 
 const Home = () => {
+	const movieInfo = useSelector((state: State) => state.movieInfo);
 	const movies = useSelector((state: State) => state.movies);
 	const searchString = useSelector((state: State) => state.filters.searchString);
 	const sortBy = useSelector((state: State) => state.filters.sortBy);
@@ -34,6 +36,7 @@ const Home = () => {
 			movie.genres = genres.filter((genre: Genre) => {
 				return movie.genre_ids.includes(genre.id);
 			});
+			movie.release_date = new Date(movie.release_date);
 			return movie;
 		});
 	};
@@ -48,7 +51,7 @@ const Home = () => {
 	const sort = (movies: Movie[]) => {
 		return movies.sort((a: Movie, b: Movie) => {
 			if (sortBy === "release_date") {
-				return new Date(b.release_date).valueOf() - new Date(a.release_date).valueOf();
+				return b.release_date.valueOf() - a.release_date.valueOf();
 			} else {
 				return b.vote_average - a.vote_average;
 			}
@@ -57,7 +60,7 @@ const Home = () => {
 
 	return (
 		<>
-			<SearchBanner searchBy={searchBy} />
+			{movieInfo ? <MovieInfo movie={movieInfo} /> : <SearchBanner searchBy={searchBy} />}
 			<SortByPanel foundMoviesNumber={filteredMovies().length} sortBy={sortBy} />
 			<MoviesGrid movies={sort(filteredMovies())} />
 		</>

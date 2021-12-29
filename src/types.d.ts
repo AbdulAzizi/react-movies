@@ -10,6 +10,9 @@ interface Movie {
 	genre_ids: number[];
 	release_date: Date;
 	vote_average: number;
+	overview: string;
+	vote_average: number;
+	runtime: number;
 }
 interface Filters {
 	searchString: string;
